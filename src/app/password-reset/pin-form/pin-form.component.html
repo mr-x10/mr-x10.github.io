@@ -1,0 +1,17 @@
+<div class="pin-component">
+  <div class="pin-form">
+    <h1 class="form-header">PIN Check</h1>
+    <form [formGroup]="pinForm" (ngSubmit)="onCheckPin()">
+
+      <mat-form-field appearance="outline" hintLabel="Enter the 6-Digits PIN you recieved via email" class="mat-form-field">
+        <mat-label>PIN</mat-label>
+        <input matInput formControlName="pin" maxlength="6" #pin_input>
+        <mat-hint align="end">{{pin_input.value.length}}/6</mat-hint>
+        <mat-error>{{getPinErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" [disabled]="!pinForm.valid||isCheckingPin">Check</button>
+    </form>
+    <mat-progress-bar mode="indeterminate" class="progress-bar" *ngIf="isCheckingPin"></mat-progress-bar>
+  </div>
+</div>

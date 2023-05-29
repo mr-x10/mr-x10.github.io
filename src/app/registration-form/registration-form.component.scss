@@ -1,0 +1,54 @@
+.registration-component {
+  height: 100%;
+  width: 100%;
+  padding: 4% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration-form {
+  width: 500px;
+  border: 1px solid #673AB7;
+  border-radius: 8px;
+
+  .progress-bar {
+    border-radius: 0px 0px 8px 8px;
+    -webkit-border-radius: 0px 0px 8px 8px;
+    -moz-border-radius: 0px 0px 8px 8px;
+    -ms-border-radius: 0px 0px 8px 8px;
+    -o-border-radius: 0px 0px 8px 8px;
+}
+
+  .form-header {
+    margin: 16px;
+    color: #673AB7;
+  }
+
+  form {
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+
+    .mat-form-field {
+      margin-bottom: 25px;
+    }
+
+    .horizontal-fields-div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .mat-form-field {
+        margin-bottom: 0;
+        width: 48%;
+      }
+    }
+
+    p {
+      margin: 10px 0px 0px 0px;
+      cursor: pointer;
+    }
+  }
+}

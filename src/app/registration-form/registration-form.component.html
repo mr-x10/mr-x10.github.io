@@ -1,0 +1,73 @@
+<div class="registration-component">
+  <div class="registration-form">
+    <!-- <mat-progress-bar mode="indeterminate" class="progress-bar" *ngIf="isRegistering"></mat-progress-bar> -->
+    <h1 class="form-header">Register</h1>
+    <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+
+      <mat-form-field appearance="outline" hintLabel="2 ~ 50 characters length." class="mat-form-field">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="firstName" maxlength="50" #fn_input>
+        <mat-hint align="end">{{fn_input.value.length}}/50</mat-hint>
+        <mat-error>{{getFirstNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" hintLabel="2 ~ 50 characters length." class="mat-form-field">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="lastName" maxlength="50" #ln_input>
+        <mat-hint align="end">{{ln_input.value.length}}/50</mat-hint>
+        <mat-error>{{getLastNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <div class="horizontal-fields-div mat-form-field">
+        <mat-form-field appearance="outline" class="mat-form-field">
+          <mat-label>Birthday</mat-label>
+          <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" formControlName="birthday">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error>Please choose your birthday.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="mat-form-field">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+          </mat-select>
+          <mat-error>Please choose your gender.</mat-error>
+          <mat-hint>Your gender</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" hintLabel="Your email, 5 ~ 100 characters length." class="mat-form-field">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="email" maxlength="100" #email_input>
+        <mat-hint align="end">{{email_input.value.length}}/100</mat-hint>
+        <mat-error>{{getEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" hintLabel="Choose a strong password to keep hackers away, 8 ~ 28 characters." class="mat-form-field">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" maxlength="28" #password_input>
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-hint align="end">{{password_input.value.length}}/28</mat-hint>
+        <mat-error>{{getPasswordErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" hintLabel="Let us be more sure you are not a robot." class="mat-form-field">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput [type]="hidePasswordConfirm ? 'password' : 'text'" formControlName="passwordConfirm" maxlength="28" #password_confirm_input>
+        <button mat-icon-button matSuffix type="button" (click)="hidePasswordConfirm = !hidePasswordConfirm" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordConfirm">
+          <mat-icon>{{hidePasswordConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-hint align="end">{{password_confirm_input.value.length}}/28</mat-hint>
+        <mat-error>{{getPasswordConfirmErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" [disabled]="!registrationForm.valid">Register</button>
+      <p>Already have an account? <a routerLink="/login">Login</a></p>
+    </form>
+    <mat-progress-bar mode="indeterminate" class="progress-bar" *ngIf="isRegistering"></mat-progress-bar>
+  </div>
+</div>
